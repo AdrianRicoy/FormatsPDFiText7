@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="container">
+        <div class="ui cards">
+            @foreach (string pdfName in ViewBag.ListPdf)
+            {
+                <div class="card">
+                    <div class="content">
+                        <div class="header">
+                            @pdfName.Split(';')[0]
+                        </div>
+                        <div class="meta">
+                            iText7
+                        </div>
+                        <div class="description">
+                            @pdfName.Split(';')[1]
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="ui two buttons">
+                            <input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic green button" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+}
