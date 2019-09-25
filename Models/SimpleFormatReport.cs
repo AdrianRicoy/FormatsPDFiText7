@@ -123,7 +123,7 @@ namespace PdfHandler.Models
         }
         #endregion
 
-        ///
+        #region Text
         public byte[] CreateMyPdf()
         {
             Dictionary<string, int> headerMessage = new Dictionary<string, int>();
@@ -149,5 +149,7 @@ namespace PdfHandler.Models
 
             return Generateformat(headerMessage, bodyMessage, footerMessage);
         }
+        #endregion
+
     }
 }
