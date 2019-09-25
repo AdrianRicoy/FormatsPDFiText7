@@ -7,6 +7,7 @@
 {
     <div class="container">
         <div class="ui cards">
+            @{int i = 2; }
             @foreach (string pdfName in ViewBag.ListPdf)
             {
                 <div class="card">
@@ -22,9 +23,19 @@
                         </div>
                     </div>
                     <div class="extra content">
-                        <div class="ui two buttons">
-                            <input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic green button" />
-                        </div>
+                        @if (i%2 == 0)
+                        {
+                            <div class="ui two buttons">
+                                <input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic green button" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="ui two buttons">
+                                <input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic blue button" />
+                            </div>
+                        }
+                        @{i++;}
                     </div>
                 </div>
 
