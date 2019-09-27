@@ -7,8 +7,6 @@ using iText.Layout.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PdfHandler.Models
 {
@@ -18,7 +16,17 @@ namespace PdfHandler.Models
         readonly PdfFont FontHelvetica = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
 
         int fontSize = 12;
-
+        /// <summary>
+        /// Constructor por defecto
+        /// </summary>
+        public SimpleFormatReport() { }
+        /// <summary>
+        /// Genere todo el formato del PDF llamando a los métodos correspondientes
+        /// </summary>
+        /// <param name="headerMessage">Texto del encabezado</param>
+        /// <param name="bodyMessage">Texto del cuerpo del mensaje</param>
+        /// <param name="footerMessage">Texto del pie de página</param>
+        /// <returns>Arreglo de byte donde estará la información del PDF</returns>
         private byte[] Generateformat(Dictionary<string, int> headerMessage, Dictionary<string, int> bodyMessage, Dictionary<string, int> footerMessage)
         {
             MemoryStream pdfTem = new MemoryStream();
@@ -52,6 +60,12 @@ namespace PdfHandler.Models
         }
 
         #region Methods - Header
+        /// <summary>
+        /// Obtner el mensaje del header
+        /// </summary>
+        /// <param name="style">El tipo de estilo que tendrá el texto</param>
+        /// <param name="text">El mensaje</param>
+        /// <returns>Un párrafo</returns>
         private Paragraph GetHeader(int style, string text)
         {
             Paragraph paragraph = new Paragraph();
@@ -74,6 +88,12 @@ namespace PdfHandler.Models
         #endregion
 
         #region Methods - Body Message
+        /// <summary>
+        /// Obtener el cuerpo del mensaje
+        /// </summary>
+        /// <param name="style">Estilo que tendrá el texto</param>
+        /// <param name="text">El mensaje</param>
+        /// <returns>Párrafo con el mensaje</returns>
         private Paragraph GetBody(int style, string text)
         {
             Paragraph paragraph = new Paragraph();
@@ -99,6 +119,12 @@ namespace PdfHandler.Models
         #endregion
 
         #region Methods - Footer
+        /// <summary>
+        /// Obtener el pie de página
+        /// </summary>
+        /// <param name="style">El estilo que va a recibir</param>
+        /// <param name="text">El mensaje</param>
+        /// <returns>Párrafo</returns>
         private Paragraph GetFooter(int style, string text)
         {
             Paragraph paragraph = new Paragraph();
@@ -124,6 +150,10 @@ namespace PdfHandler.Models
         #endregion
 
         #region Text
+        /// <summary>
+        /// Genera todos los textos para el pdf
+        /// </summary>
+        /// <returns>El pdf en un arreglo de byte</returns>
         public byte[] CreateMyPdf()
         {
             Dictionary<string, int> headerMessage = new Dictionary<string, int>();
