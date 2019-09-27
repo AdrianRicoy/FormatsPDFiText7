@@ -7,6 +7,9 @@ namespace PdfHandler.Models
 {
     public class HandlerPdf
     {
+        /// <summary>
+        /// Constructor por defecto
+        /// </summary>
         public HandlerPdf() { }
         /// <summary>
         /// Llamará al método correspondiente dependiendo del nombre del pdf
