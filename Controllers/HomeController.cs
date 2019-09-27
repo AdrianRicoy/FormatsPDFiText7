@@ -28,7 +28,7 @@ namespace PdfHandler.Controllers
             if(!string.IsNullOrEmpty(pdfName))
             {
                 byte[] pdf = new HandlerPdf().StartHandlerPdf(pdfName.Split(": ")[1]);
-                HttpContext.Response.Headers.Add("Content-Disposition", "attachment; filename=" + pdfName.Split(": ")[1] + ".pdf");
+                HttpContext.Response.Headers.Add("Content-Disposition", "attachment; filename=" + pdfName.Split(": ")[1].Replace(" ", "") + ".pdf");
                 return File(pdf, "aplication/pdf");
             }
 
