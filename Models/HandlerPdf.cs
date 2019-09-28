@@ -24,6 +24,9 @@ namespace PdfHandler.Models
                 case "Simple format":
                     report = new SimpleFormatReport().CreateMyPdf();
                     break;
+                case "Format Img":
+                    report = new FormatImgReport().Generateformat();
+                    break;
                 case "Format Table 1":
                     report = new TableFormatReport1().GenerateFormat();
                     break;
