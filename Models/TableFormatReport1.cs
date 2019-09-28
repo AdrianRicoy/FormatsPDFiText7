@@ -115,14 +115,28 @@ namespace PdfHandler.Models
             Table table = new Table(4, true);
 
             Paragraph title = new Paragraph("Title").SetFont(FontHelveticaNegrita).SetFontSize(fontSize + 3);
-            Paragraph celda11 = new Paragraph("Nombre: ").SetFont(FontHelvetica).SetFontSize(fontSize);
-            Paragraph celda12 = new Paragraph(" NOM  APELLIDO1  APELLIDO2").SetFont(FontHelvetica).SetFontSize(fontSize).SetBorderBottom(new SolidBorder(1f));
-            Paragraph celda21 = new Paragraph("Prueba de otro texto").SetFont(FontHelvetica).SetFontSize(fontSize);
+            table.AddCell(GetCell(1, 4, title, TextAlignment.CENTER, new DeviceRgb(80, 80, 80)));
 
-            table.AddCell(GetCell(1, 4, title, TextAlignment.CENTER, new DeviceRgb(80, 80, 80)).SetBorder(Border.NO_BORDER));
-            table.AddCell(GetCell(1, 2, celda11, TextAlignment.RIGHT, new DeviceRgb(255, 255, 255)).SetBorder(Border.NO_BORDER));
-            table.AddCell(GetCell(1, 2, celda12, TextAlignment.LEFT, new DeviceRgb(255, 255, 255)));
-            table.AddCell(GetCell(1, 4, celda21, TextAlignment.CENTER, new DeviceRgb(255, 255, 255)));
+            Paragraph celda = new Paragraph("Nombre: ").SetFont(FontHelvetica).SetFontSize(fontSize);
+            table.AddCell(GetCell(1, 2, celda, TextAlignment.RIGHT, new DeviceRgb(255, 255, 255)));
+
+            celda = new Paragraph(new Text("Stephen     Hawking\n").SetBorderBottom(new SolidBorder(1f)).SetFontSize(fontSize)).SetFont(FontHelvetica);
+            celda.Add(new Paragraph(new Text("NOM     APELLIDO1")).SetFont(FontHelvetica).SetFontSize(fontSize - 4));
+            table.AddCell(GetCell(1, 2, celda, TextAlignment.LEFT, new DeviceRgb(255, 255, 255)));
+
+            celda = new Paragraph("Prueba de otro texto").SetFont(FontHelvetica).SetFontSize(fontSize);
+            table.AddCell(GetCell(1, 4, celda, TextAlignment.CENTER, new DeviceRgb(255, 255, 255)));
+
+            celda = new Paragraph("Grado: 7mo de Ingeniería").SetFont(FontHelvetica).SetFontSize(fontSize);
+            table.AddCell(GetCell(1, 1, new Paragraph(""), TextAlignment.CENTER, new DeviceRgb(255, 255, 255)));
+            table.AddCell(GetCell(1, 3, celda, TextAlignment.CENTER, new DeviceRgb(23, 193, 180)));
+
+            table.AddCell(GetCell(1, 1, new Paragraph("1"), TextAlignment.CENTER, new DeviceRgb(255, 255, 255)));
+            table.AddCell(GetCell(1, 1, new Paragraph("2"), TextAlignment.CENTER, new DeviceRgb(255, 255, 255)).SetBorderRight(Border.NO_BORDER));
+            table.AddCell(GetCell(1, 1, new Paragraph("3"), TextAlignment.CENTER, new DeviceRgb(255, 255, 255)).SetBorderLeft(Border.NO_BORDER));
+            table.AddCell(GetCell(1, 1, new Paragraph("4"), TextAlignment.CENTER, new DeviceRgb(255, 255, 255)));
+
+            table.AddCell(GetCell(1, 4, new Paragraph(""), TextAlignment.CENTER, new DeviceRgb(123, 55, 135)));
 
             return table;
         }
