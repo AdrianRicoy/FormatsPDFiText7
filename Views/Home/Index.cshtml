@@ -23,19 +23,17 @@
                         </div>
                     </div>
                     <div class="extra content">
-                        @if (i%2 == 0)
-                        {
-                            <div class="ui two buttons">
-                                <input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic green button" />
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="ui two buttons">
-                                <input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic blue button" />
-                            </div>
-                        }
-                        @{i++;}
+                        @{ int[] range = {0,  5};}
+                        <div class="ui two buttons">
+                            @switch (Props.RandomNumber(range))
+                            {
+                                case 0:<input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic green button" />break;
+                                case 1:<input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic red button" />break;
+                                case 2:<input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic yellow button" />break;
+                                case 3:<input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic blue button" />break;
+                                default: <input type="submit" value="Generar PDF: @pdfName.Split(';')[0]" name="pdfName" class="ui basic purple button" />break;
+                            }
+                        </div>
                     </div>
                 </div>
 
