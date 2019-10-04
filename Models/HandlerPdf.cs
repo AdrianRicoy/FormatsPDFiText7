@@ -30,6 +30,9 @@ namespace PdfHandler.Models
                 case "Format Table 1":
                     report = new TableFormatReport1().GenerateFormat();
                     break;
+                case "Format Table 2":
+                    report = new TableFormatReport2().GenerateFormat();
+                    break;
             }
 
             return report;
@@ -46,7 +49,7 @@ namespace PdfHandler.Models
             name.Add("Format Img;Crea un pdf con formato simple con imagenes");
             name.Add("Format Alignment;Crea un pdf con formato de diferente alineación");
             name.Add("Format Table 1;Crea un pdf con formato de una tabla");
-            name.Add("Format Table 2;Crea un pdf con formato de tablas");
+            name.Add("Format Table 2;Crea un pdf con formato de tablas más complejo");
             name.Add("Format Table Image;Crea un pdf con un formato simple");
             name.Add("Format Form;Crea un pdf con un formulario de inputs");
             name.Add("Format Img;Crea un pdf con formato simple con imagenes");

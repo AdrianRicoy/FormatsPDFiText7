@@ -6,11 +6,8 @@ using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace PdfHandler.Models
 {
@@ -35,7 +32,7 @@ namespace PdfHandler.Models
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
-            #region Heder
+            #region Header
             document.Add(GetHeader(TextAlignment.RIGHT));
             #endregion
 
