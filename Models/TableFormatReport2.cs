@@ -134,6 +134,10 @@ namespace PdfHandler.Models
             table.AddCell(GetCell(1, " MUNICIPIO. ", TextAlignment.RIGHT, false, false).SetBorderLeft(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER));
             table.AddCell(GetCell(1, "Inventado", TextAlignment.LEFT, false, true).SetBorderLeft(Border.NO_BORDER));
 
+            table.AddCell(GetCell(1, "NOMBRE DEL PUESTO", TextAlignment.RIGHT, false, false).SetBorderRight(Border.NO_BORDER));
+            table.AddCell(GetCell(3, "ING SISTEMAS", TextAlignment.LEFT, false, true).SetBorderLeft(Border.NO_BORDER));
+
+
             table.AddCell(new Cell(1, 4));
 
             return table;
