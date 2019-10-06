@@ -44,7 +44,8 @@ namespace PdfHandler.Models
             #endregion
 
             #region Footer
-
+            document.Add(GetFooterList(TextAlignment.JUSTIFIED));
+            document.Add(GetTableFooter());
             #endregion
 
             document.Close();
@@ -78,15 +79,15 @@ namespace PdfHandler.Models
         /// <returns>Objeto Table</returns>
         private Table GetTableDateEnrollment()
         {
-            Table table = new Table(new float[] { 20, 50, 15, 15}, true);
+            Table table = new Table(new float[] { 20, 50, 15, 15 }, true);
 
             string enrollment = "15A35B0544";
             string dateFormat = string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
 
-            Cell cellEnrollment = new Cell(1,1);
+            Cell cellEnrollment = new Cell(1, 1);
             table.AddCell(cellEnrollment.Add(new Paragraph("MATRÍCULA ")).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT));
 
-            cellEnrollment = new Cell(1,1);
+            cellEnrollment = new Cell(1, 1);
             cellEnrollment.Add(new Paragraph(enrollment).SetBorderBottom(new SolidBorder(1f)));
             cellEnrollment.SetBorderTop(Border.NO_BORDER).SetBorderRight(Border.NO_BORDER).SetBorderLeft(Border.NO_BORDER);
             table.AddCell(cellEnrollment.SetTextAlignment(TextAlignment.LEFT));
@@ -170,7 +171,41 @@ namespace PdfHandler.Models
         #endregion
 
         #region Methods - Footer
+        /// <summary>
+        /// Genera un mensaje en el footer, en el formato
+        /// </summary>
+        /// <param name="alignment">Alineación del texto</param>
+        /// <returns>Párrafo</returns>
+        private Paragraph GetFooterList(TextAlignment alignment)
+        {
+            Paragraph paragraph = new Paragraph();
 
+            paragraph.Add(new Text("\nAcepto las siguientes condiciones").SetFont(FontHelveticaNegrita));
+            paragraph.Add(new Text("\n1- La primera condición es inventada").SetFont(FontHelvetica));
+            paragraph.Add(new Text("\n2- Segunda condición es al azar, no sé me ocurre nada").SetFont(FontHelvetica));
+            paragraph.Add(new Text("\n3- Alguna vez, te has preguntado ¿Qué es la vida? ¿Tienes alguna respuesta?").SetFont(FontHelvetica));
+            paragraph.Add(new Text("\n4- Por lo menos dejarme una estrellita en Github, eso levanta el animo\n\n\n").SetFont(FontHelvetica));
+
+            paragraph.SetFontSize(8);
+
+            return paragraph;
+        }
+        /// <summary>
+        /// Obtener una tabla de firmas para el Footer en el formato PDF
+        /// </summary>
+        /// <returns>Tabla</returns>
+        private Table GetTableFooter()
+        {
+            Table table = new Table(2, true);
+
+            table.AddCell(GetCell(1, "                      ", TextAlignment.CENTER, false, true).SetBorder(Border.NO_BORDER));
+            table.AddCell(GetCell(1, "                      ", TextAlignment.CENTER, false, true).SetBorder(Border.NO_BORDER));
+            table.AddCell(GetCell(1, "Firma del Solicitante", TextAlignment.CENTER, false, false).SetBorder(Border.NO_BORDER));
+            table.AddCell(GetCell(1, "Frima del jefe", TextAlignment.CENTER, false, false).SetBorder(Border.NO_BORDER));
+
+
+            return table;
+        }
         #endregion
 
         #region Props
