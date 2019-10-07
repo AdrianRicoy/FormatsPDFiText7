@@ -14,8 +14,8 @@ namespace PdfHandler.Models
         /// <summary>
         /// Llamará al método correspondiente dependiendo del nombre del pdf
         /// </summary>
-        /// <param name="pdfName"></param>
-        /// <returns></returns>
+        /// <param name="pdfName">Nombre del PDF seleccionado</param>
+        /// <returns>Arreglo de byte con la información del PDF</returns>
         public byte[] StartHandlerPdf(string pdfName)
         {
             byte[] report = null;
@@ -23,6 +23,9 @@ namespace PdfHandler.Models
             {
                 case "Simple format":
                     report = new SimpleFormatReport().CreateMyPdf();
+                    break;
+                case "Format Alignment":
+                    report = new SimpleFormatReport().CreateMyPdf2();
                     break;
                 case "Format Img":
                     report = new FormatImgReport().Generateformat();
@@ -46,8 +49,8 @@ namespace PdfHandler.Models
             List<String> name = new List<String>();
 
             name.Add("Simple format;Crea un pdf con un formato simple");
-            name.Add("Format Img;Crea un pdf con formato simple con imagenes");
             name.Add("Format Alignment;Crea un pdf con formato de diferente alineación");
+            name.Add("Format Img;Crea un pdf con formato simple con imagenes");
             name.Add("Format Table 1;Crea un pdf con formato de una tabla");
             name.Add("Format Table 2;Crea un pdf con formato de tablas más complejo");
             name.Add("Format Table Image;Crea un pdf con un formato simple");
