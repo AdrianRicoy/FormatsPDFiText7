@@ -16,31 +16,36 @@ namespace PdfHandler.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
         [HttpPost]
         public ActionResult Index(string pdfName)
         {
             if(!string.IsNullOrEmpty(pdfName))
             {
                 byte[] pdf = new HandlerPdf().StartHandlerPdf(pdfName.Split(": ")[1]);
-                
-                if(pdf == null)
+
+                if (pdf == null)
                 {
-                    ViewData["Error"] = Message.pdfNotFound;
-                    ViewData["ListPdf"] = new HandlerPdf().PdfNames();
+                    SendsError(Message.pdfNotFound);
                     return View();
                 }
 
                 HttpContext.Response.Headers.Add("Content-Disposition", "attachment; filename=" + pdfName.Split(": ")[1].Replace(" ", "") + ".pdf");
                 return File(pdf, "aplication/pdf");
+            } else
+            {
+                SendsError(Message.pdfNotName);
             }
 
             return View();
+        }
+        /// <summary>
+        /// Mandar un mensaje de error a la vista con la lista de los nombres PDF
+        /// </summary>
+        /// <param name="message">Mensaje de error</param>
+        private void SendsError(string message)
+        {
+            ViewData["Error"] = message;
+            ViewData["ListPdf"] = new HandlerPdf().PdfNames();
         }
     }
 }
