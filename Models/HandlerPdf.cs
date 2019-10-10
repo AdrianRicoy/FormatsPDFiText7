@@ -36,7 +36,8 @@ namespace PdfHandler.Models
                 case "Format Table 2":
                     report = new TableFormatReport2().GenerateFormat();
                     break;
-                case "Format QrBarCode":    
+                case "Format QrBarCode":
+                    report = new FormatQrBarCode().GenerateFormat();
                     break;
             }
 
