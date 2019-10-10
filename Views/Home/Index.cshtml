@@ -2,6 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
+@if(ViewData["Error"] != null)
+{
+    <div class="ui negative message">
+        <div class="header">
+            @ViewData["Error"]
+        </div>
+        <p>
+            D:
+        </p>
+    </div>
+}
 
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
