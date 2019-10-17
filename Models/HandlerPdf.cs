@@ -36,6 +36,9 @@ namespace PdfHandler.Models
                 case "Format Table 2":
                     report = new TableFormatReport2().GenerateFormat();
                     break;
+                case "Format Form":
+                    report = new FormatFormReport().GenerateFormat();
+                    break;
                 case "Format QrBarCode":
                     report = new FormatQrBarCode().GenerateFormat();
                     break;
@@ -60,8 +63,8 @@ namespace PdfHandler.Models
             name.Add("Format Form;Crea un pdf con un formulario de inputs");
             name.Add("Format QrBarCode;Crea un pdf con formato simple con imagenes");
             name.Add("Format Button;Crea un pdf con formato de diferente alineación");
-            name.Add("Format None;Crea un pdf con formato de una tabla");
-            name.Add("Format None;Crea un pdf con formato de tablas");
+            name.Add("Format Manypages;Crea un pdf con formato de una tabla");
+            name.Add("Format Statistics;Crea un pdf con formato de tablas");
             name.Add("Format None;Crea un pdf con un formulario de inputs");
 
             return name;
