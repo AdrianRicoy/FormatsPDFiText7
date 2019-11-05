@@ -17,10 +17,16 @@ namespace PdfHandler.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string pdfName)
+        public ActionResult Index(string pdfName, string initialDate, string finalDate)
         {
             if(!string.IsNullOrEmpty(pdfName))
             {
+                if(pdfName.Split(": ")[1] == "Format Dialisis")
+                {
+                    ViewData["ListPdf"] = new HandlerPdf().PdfNames();
+                    ViewData["Dialisis"] = true;
+                    return View();
+                }
                 byte[] pdf = new HandlerPdf().StartHandlerPdf(pdfName.Split(": ")[1]);
 
                 if (pdf == null)
@@ -38,6 +44,7 @@ namespace PdfHandler.Controllers
 
             return View();
         }
+
         /// <summary>
         /// Mandar un mensaje de error a la vista con la lista de los nombres PDF
         /// </summary>
