@@ -42,6 +42,9 @@ namespace PdfHandler.Models
                 case "Format QrBarCode":
                     report = new FormatQrBarCode().GenerateFormat();
                     break;
+                case "Dialisis Format":
+                    report = new DialisisFormatReport().GenerateFormat();
+                    break;
             }
 
             return report;
@@ -65,7 +68,7 @@ namespace PdfHandler.Models
             name.Add("Format Button;Crea un pdf con formato de diferente alineación");
             name.Add("Format Manypages;Crea un pdf con formato de una tabla");
             name.Add("Format Statistics;Crea un pdf con formato de tablas");
-            name.Add("Format None;Crea un pdf con un formulario de inputs");
+            name.Add("Format Dialisis;Crea un pdf con la bitacora de una dialisis");
 
             return name;
         }
