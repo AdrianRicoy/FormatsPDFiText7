@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if(ViewData["Error"] != null)
+@if (ViewData["Error"] != null)
 {
     <div class="ui negative message">
         <div class="header">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="extra content">
-                        @{ int[] range = {0,  5};}
+                        @{ int[] range = { 0, 5 };}
                         <div class="ui two buttons">
                             @switch (Props.RandomNumber(range))
                             {
@@ -51,4 +51,42 @@
             }
         </div>
     </div>
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "ui modal" }))
+{
+    <i class="close icon"></i>
+    <div class="header">
+        Dialisis Format
+    </div>
+    <div class="image content">
+        <div class="ui medium image">
+            <img src="https://semantic-ui.com/images/avatar2/large/rachel.png">
+        </div>
+        <div class="description">
+            <div class="ui header">Initial date</div>
+            <div class="ui input">
+                <input type="date" name="initialDate">
+            </div>
+            <div class="ui header">Final date</div>
+            <div class="ui input">
+                <input type="date" name="finalDate">
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Nope
+        </div>
+        <input type="submit" name="pdfName" value="Generar PDF: Dialisis Format" class="ui positive right labeled icon button" />
+    </div>
+}
+
+@if (ViewData["Dialisis"] != null)
+{
+    <script>
+        $('.ui.modal')
+            .modal('show')
+            ;
+    </script>
 }
